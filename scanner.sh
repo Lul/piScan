@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "piScan v0.01\nCreated by John Thiell\n\n"
+echo -e "piScan v0.01\nCreated by John Thiell\n"
 
 sys_check()
 {

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo -e "piScan v0.01\nCreated by John Thiell\n"
+echo -e "piScan v0.01
+Created by John Thiell\n"
 
 sys_check()
 {
@@ -60,7 +61,7 @@ ipscan()
 {
   for i in $(enumerate)
   do
-    nmap -p 1-65535 $i 
+    nmap -p 1-65535 -T4 -A -v $i
   done
 }
 
@@ -77,9 +78,9 @@ menu()
   echo "What would you like to do? 
         1: Display current machine's IPs
         2: Manual nmap command
-        3: Enumerate all IP's on network
-        4: Discover ports & services on all IP's
-        5: Vulnerability Scan all IP's
+        3: Enumerate all IPs on network
+        4: Discover ports & enumerate OS/services on all IPs
+        5: Vulnerability scan all IPs
         6: Exit"
   read minput
   if [ $minput -lt 1 ] || [ $minput -gt 6 ]; then

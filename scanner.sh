@@ -1,17 +1,34 @@
 #!/bin/bash
+#piScanner ver 0.01
+#created by John Thiell
 
 sys_check()
 {
-  if [ -e "/usr/share/nmap" ]; then
-    if [ -e "/usr/share/nmap/scripts/nmap-vulners" ]; then
-      return
+  if [ -d "/usr/share/nmap" ] && [ -e "/usr/share/nmap/scripts/nmap-vulners" ]; then
+    return
+  elif [ ! -d "/usr/share/nmap" ]; then
+    echo -e "nmap not installed. Would you like to install it? (Y/N)\n"
+    read install
+    if [ $install == "Y" ] || [ $install == "y" ]; then
+      #sudo apt install nmap
+      echo "test"
+      sys_check
     else
-    echo "'nmap-vulners' not installed. Run 'sudo git clone https://github.com/vulnersCom/nmap-vulners.git' from within '/usr/share/nmap/scripts/'"
-    exit
+      exit
+    fi
+  elif [ ! -e "/usr/share/nmap/scripts/nmap-vulners" ]; then
+    echo -e "'nmap-vulners' not installed. Would you like to install it? (Y/N)\n"
+    read install
+    if [ $install == "Y" ] || [ $install == "y" ]; then
+      #cd /usr/share/nmap/scripts; sudo git clone https://github.com/vulnersCom/nmap-vulners.git
+      echo "test"
+      sys_check
+    else
+      exit
     fi
   else
-    echo "nmap not found. Run 'sudo apt install nmap' from within your terminal."
-    exit 
+    echo -e "Fatal Error, exiting."
+    exit
   fi
 }
 

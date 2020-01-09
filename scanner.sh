@@ -3,6 +3,18 @@
 echo -e "piScan v0.01
 Created by John Thiell\n"
 
+detectconnection()
+{
+  detect="ip addr | grep 'state UP'"
+  if eval $detect >/dev/null; then
+    return
+  else
+    echo "No connection detected, retrying in 5 seconds.."
+    sleep 5
+    detectconnection
+  fi
+}
+
 sys_check()
 {
   if [ -d "/usr/share/nmap" ] && [ -e "/usr/share/nmap/scripts/nmap-vulners" ]; then
@@ -76,7 +88,7 @@ vulnscan()
 menu()
 {
   echo "What would you like to do? 
-        1: Display current machine's IPs
+        1: Display current machine's IP
         2: Manual nmap command
         3: Enumerate all IPs on network
         4: Discover ports & enumerate OS/services on all IPs
@@ -98,5 +110,6 @@ menu()
   fi
 }
 
+detectconnection
 sys_check
 menu

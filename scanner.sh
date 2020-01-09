@@ -10,8 +10,7 @@ sys_check()
     echo -e "nmap not installed. Would you like to install it? (Y/N)\n"
     read install
     if [ $install == "Y" ] || [ $install == "y" ]; then
-      #sudo apt install nmap
-      echo "test"
+      sudo apt install nmap
       sys_check
     else
       exit
@@ -20,8 +19,7 @@ sys_check()
     echo -e "'nmap-vulners' not installed. Would you like to install it? (Y/N)\n"
     read install
     if [ $install == "Y" ] || [ $install == "y" ]; then
-      #cd /usr/share/nmap/scripts; sudo git clone https://github.com/vulnersCom/nmap-vulners.git
-      echo "test"
+      cd /usr/share/nmap/scripts; sudo git clone https://github.com/vulnersCom/nmap-vulners.git
       sys_check
     else
       exit

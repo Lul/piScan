@@ -1,6 +1,7 @@
 #!/bin/bash
-#piScanner ver 0.01
-#created by John Thiell
+
+echo -e "piScan v0.01\n"
+echo -e "created by John Thiell\n\n"
 
 sys_check()
 {
@@ -38,13 +39,13 @@ self_discover()
 
 ping_all()
 {
-  ping -c 1 $1 > /dev/null
+  ping -b -c 1 $1 > /dev/null
   [ $? -eq 0 ] && echo $i
 }
 
 enumerate()
 {
-  for i in $(self_discover).{1..254}
+  for i in $(self_discover).{1..255}
   do
     ping_all $i & disown
   done
